@@ -9,7 +9,7 @@ pipeline {
                 input(
                     id: 'userInput', message: 'Text goes here', parameters: [
                         [ $class: 'DropdownAutocompleteParameterDefinition', name: 'MyName', displayExpression: 'id', valueExpression: 'id', dataprovider: [
-                            [$class: 'InlineJsonDataProvider', autoCompleteData: '[{"name":"xx","id":"1"},{"name":"yy","id":"2"}]']]]])
+                            [$class: 'SimpleTextProvider', autoCompleteData: 'test\none\ntwo\nthree']]]])
            }
         }
     }
