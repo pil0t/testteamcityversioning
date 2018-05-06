@@ -20,7 +20,11 @@ pipeline {
                                     DropdownAutocompleteParameterDefinition(defaultValue: 'None',
                                             description: 'Path of config file',
                                             name: 'Config', 
-  dataProvider: RemoteDataProvider(autoCompleteUrl: 'https://raw.githubusercontent.com/pil0t/testteamcityversioning/master/test.json')),
+  dataProvider: InlineJsonDataProvider(autoCompleteData: '[
+	{"name": "Eddard Stark","id":"estark", "house":"Stark"},
+	{"name": "John Snow","id":"jsnow", "house":"Stark"},
+	{"name": "Tyrion Lannister","id":"tlannister", "house":"Lannister"}	
+]')),
                                     string(defaultValue: 'None',
                                             description: 'Test Info file',
                                             name: 'Test'),
