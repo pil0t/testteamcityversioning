@@ -1,5 +1,6 @@
 pipeline {
   agent any
+  currentBuild.description = "#${BUILD_NUMBER}, branch ${BRANCH}"
   stages {
     stage('Build') {
       environment {
