@@ -2,6 +2,10 @@ pipeline {
   agent any
   stages {
     stage('Build') {
+      environment {
+        FF = 'r'
+        TT = 'rr'
+      }
       parallel {
         stage('Build') {
           steps {
@@ -9,7 +13,7 @@ pipeline {
             sh 'dotnet build TestMe'
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             echo 'xxxx'
           }
