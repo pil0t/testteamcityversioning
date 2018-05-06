@@ -17,7 +17,7 @@ pipeline {
                             id: 'userInput', message: 'Enter path of test reports:?',
                             parameters: [
 
-                                    AutoCompleteStringParameterDefinition(defaultValue: 'None',
+                                    DropdownAutocompleteParameterDefinition(defaultValue: 'None',
                                             description: 'Path of config file',
                                             name: 'Config', 
   dataProvider: RemoteDataProvider(autoCompleteUrl: 'https://raw.githubusercontent.com/pil0t/testteamcityversioning/master/test.json')),
