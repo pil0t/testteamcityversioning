@@ -2,15 +2,13 @@ pipeline {
   agent any
    
   stages {
-    stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob,admin,pil0t"
-                parameters: [choice(name: 'RELEASE_SCOPE', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')]
-            }
+stage("foo") {
             steps {
-                echo "Hello, ${PERSON}, nice to meet you."
+                script {
+                    env.RELEASE_SCOPE = input message: 'User input required', ok: 'Release!',
+                            parameters: [choice(name: 'RELEASE_SCOPE', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')]
+                }
+                echo "${env.RELEASE_SCOPE}"
             }
         }
     stage('Build') {
