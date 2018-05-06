@@ -10,7 +10,9 @@ pipeline {
                     id: 'userInput', message: 'Text goes here', parameters: [
                         [ $class: 'DropdownAutocompleteParameterDefinition', name: 'MyName', dataprovider: [
                             [$class: 'InlineJsonDataProvider', autoCompleteData: '[{"id":"1"},{"id":"2"}]'
-                ]]]])
+                ],
+        displayExpression: 'id',
+        valueExpression: 'id']]])
            }
         }
     }
