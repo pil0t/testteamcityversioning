@@ -17,9 +17,10 @@ pipeline {
                             id: 'userInput', message: 'Enter path of test reports:?',
                             parameters: [
 
-                                    string(defaultValue: 'None',
+                                    AutoCompleteStringParameterDefinition(defaultValue: 'None',
                                             description: 'Path of config file',
-                                            name: 'Config'),
+                                            name: 'Config', 
+  dataProvider: RemoteDataProvider(autoCompleteUrl: 'https://raw.githubusercontent.com/pil0t/testteamcityversioning/master/test.json')),
                                     string(defaultValue: 'None',
                                             description: 'Test Info file',
                                             name: 'Test'),
