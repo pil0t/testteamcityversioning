@@ -7,9 +7,7 @@ pipeline {
                 message "Should we continue?"
                 ok "Yes, we should."
                 submitter "alice,bob,admin,pil0t"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
+                parameters: [choice(name: 'RELEASE_SCOPE', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')]
             }
             steps {
                 echo "Hello, ${PERSON}, nice to meet you."
