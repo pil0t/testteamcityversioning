@@ -4,43 +4,18 @@ pipeline {
   stages {
 
     
-      stage("Interactive_Input") {
+      stage('input') {
             steps {
-                script {
-
-                    // Variables for input
-                    def inputConfig
-                    def inputTest
-
-                    // Get the input
-                    def userInput = input(
-                            id: 'userInput', message: 'Enter path of test reports:?',
-                            parameters: [
-
-                                    DropdownAutocompleteParameterDefinition(defaultValue: 'None',
-                                            description: 'Path of config file',
-                                            name: 'Config', 
-  dataProvider: InlineJsonDataProvider(autoCompleteData: '[	{"name": "Eddard Stark","id":"estark", "house":"Stark"},	{"name": "John Snow","id":"jsnow", "house":"Stark"},	{"name": "Tyrion Lannister","id":"tlannister", "house":"Lannister"}	]')),
-                                    string(defaultValue: 'None',
-                                            description: 'Test Info file',
-                                            name: 'Test'),
-                            ])
-
-                    // Save to variables. Default to empty string if not found.
-                    inputConfig = userInput.Config?:''
-                    inputTest = userInput.Test?:''
-
-                    // Echo to console
-                    echo("IQA Sheet Path: ${inputConfig}")
-                    echo("Test Info file path: ${inputTest}")
-
-                    // Write to file
-                    writeFile file: "inputData.txt", text: "Config=${inputConfig}\r\nTest=${inputTest}"
-
-                    // Archive the file (or whatever you want to do with it)
-                    archiveArtifacts 'inputData.txt'
-                }
-            }
+                input(
+                    id: 'userInput', message: 'Text goes here', parameters: [
+                        [ $class: 'DropdownAutocompleteParameterDefinition', name: 'MyName', dataprovider: [
+                            [$class: 'InlineJsonDataProvider', autoCompleteData: '[{"id":"1"},{"id":"2"}]'
+                ], 
+                        
+        displayExpression: 'id',
+        valueExpression: 'id'
+                        ]]])
+           }
         }
     
     
