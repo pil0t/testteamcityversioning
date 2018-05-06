@@ -2,9 +2,18 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      steps {
-        echo 'Building..'
-        sh("dotnet build TestMe")
+      parallel {
+        stage('Build') {
+          steps {
+            echo 'Building..'
+            sh 'dotnet build TestMe'
+          }
+        }
+        stage('') {
+          steps {
+            echo 'xxxx'
+          }
+        }
       }
     }
     stage('Test') {
