@@ -16,7 +16,7 @@ pipeline {
         stage('error') {
           steps {
             echo 'xxxx'
-            build 'asd'
+            build 'testteamcityversioning'
           }
         }
       }
